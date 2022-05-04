@@ -192,7 +192,7 @@ const classes = {
     borderRadius: "25px",
     padding: "24px",
     boxSizing: "border-box",
-    overflow: "auto",
+    overflow: "hidden",
     userSelect: "none",
     MozUserSelect: "none",
     WebkitUserSelect: "none",
