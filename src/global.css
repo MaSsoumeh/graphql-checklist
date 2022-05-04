@@ -1,0 +1,18 @@
+@media (prefers-reduced-motion: no-preference) {
+  .loading {
+    animation: loading-spin infinite 15s linear;
+  }
+}
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.addSvg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
