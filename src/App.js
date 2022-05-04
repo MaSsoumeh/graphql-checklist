@@ -167,7 +167,6 @@ function App() {
                     >
                       {todo.text}
                     </p>
-                    <p>{todo.date}</p>
                   </div>
                   <TrashIcon
                     style={classes.deleteBtn}
