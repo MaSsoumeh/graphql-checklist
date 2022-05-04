@@ -96,7 +96,7 @@ function App() {
   }
 
   return (
-    <div style={{ minWidth: "350px", padding: "20px" }}>
+    <div style={{ minWidth: "300px", padding: "20px" }}>
       <div style={classes.mainWrapper}>
         <ListIcon style={{ width: "80px", height: "80px" }} />
         <h2 style={{ color: "#47456D", marginBottom: "8px" }}>Add new Task</h2>
