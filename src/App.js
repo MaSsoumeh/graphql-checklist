@@ -96,85 +96,89 @@ function App() {
   }
 
   return (
-    <div style={classes.mainWrapper}>
-      <ListIcon style={{ width: "80px", height: "80px" }} />
-      <h2 style={{ color: "#47456D", marginBottom: "8px" }}>Add new Task</h2>
-      <p style={{ color: "#AFAFAF", textAlign: "center", margin: 0 }}>
-        Be productive today, and lets make some wonderful world with it.
-      </p>
-      {/* Add todo */}
-      <div style={classes.inputWrapper}>
-        <input
-          type="text"
-          placeholder="Add new todo..."
-          style={classes.textInput}
-          ref={inputRef}
-        />
-        <AddIcon
-          onClick={handleAddTodo}
-          style={{ width: "24px", height: "24px", cursor: "pointer" }}
-        />
-      </div>
-      {/* todo list */}
-      <div
-        style={{
-          width: "318px",
-          boxSizing: "border-box",
-        }}
-      >
-        {loading ? (
-          <LoadingIcon />
-        ) : error ? (
-          <>Error fetching data</>
-        ) : (
-          data.Todos.map((todo, index) => {
-            return (
-              <div
-                key={todo.id}
-                style={{
-                  ...classes.todoItem,
-                  borderLeft:
-                    index % 2 === 0 ? "8px solid #8D8AB9" : "8px solid #B2E0DA",
-                }}
-              >
+    <div style={{ minWidth: "350px", padding: "20px" }}>
+      <div style={classes.mainWrapper}>
+        <ListIcon style={{ width: "80px", height: "80px" }} />
+        <h2 style={{ color: "#47456D", marginBottom: "8px" }}>Add new Task</h2>
+        <p style={{ color: "#AFAFAF", textAlign: "center", margin: 0 }}>
+          Be productive today, and lets make some wonderful world with it.
+        </p>
+        {/* Add todo */}
+        <div style={classes.inputWrapper}>
+          <input
+            type="text"
+            placeholder="Add new todo..."
+            style={classes.textInput}
+            ref={inputRef}
+          />
+          <AddIcon
+            onClick={handleAddTodo}
+            style={{ width: "24px", height: "24px", cursor: "pointer" }}
+          />
+        </div>
+        {/* todo list */}
+        <div
+          style={{
+            width: "318px",
+            boxSizing: "border-box",
+          }}
+        >
+          {loading ? (
+            <LoadingIcon />
+          ) : error ? (
+            <>Error fetching data</>
+          ) : (
+            data.Todos.map((todo, index) => {
+              return (
                 <div
-                  style={classes.checkboxWrapper}
-                  onClick={() => {
-                    handleToggleTodo(todo);
+                  key={todo.id}
+                  style={{
+                    ...classes.todoItem,
+                    borderLeft:
+                      index % 2 === 0
+                        ? "8px solid #8D8AB9"
+                        : "8px solid #B2E0DA",
                   }}
                 >
-                  <RadioIcon
-                    style={{
-                      ...classes.checkbox,
-                      display: todo.done && "none",
-                    }}
-                  />
-                  <CheckedRadioIcon
-                    style={{
-                      ...classes.checkbox,
-                      display: !todo.done && "none",
-                    }}
-                  />
-                  <p
-                    style={{
-                      margin: 0,
-                      color: "#47456D",
-                      textDecoration: todo.done && "line-through",
+                  <div
+                    style={classes.checkboxWrapper}
+                    onClick={() => {
+                      handleToggleTodo(todo);
                     }}
                   >
-                    {todo.text}
-                  </p>
+                    <RadioIcon
+                      style={{
+                        ...classes.checkbox,
+                        display: todo.done && "none",
+                      }}
+                    />
+                    <CheckedRadioIcon
+                      style={{
+                        ...classes.checkbox,
+                        display: !todo.done && "none",
+                      }}
+                    />
+                    <p
+                      style={{
+                        margin: 0,
+                        color: "#47456D",
+                        textDecoration: todo.done && "line-through",
+                      }}
+                    >
+                      {todo.text}
+                    </p>
+                  </div>
+                  <TrashIcon
+                    style={classes.deleteBtn}
+                    onClick={() => {
+                      handleDeleteTodo(todo);
+                    }}
+                  />
                 </div>
-                <TrashIcon
-                  style={classes.deleteBtn}
-                  onClick={() => {
-                    handleDeleteTodo(todo);
-                  }}
-                />
-              </div>
-            );
-          })
-        )}
+              );
+            })
+          )}
+        </div>
       </div>
     </div>
   );
@@ -186,7 +190,7 @@ const classes = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "350px",
+    width: "100%",
     minHeight: "800px",
     backgroundColor: "#FCEEEC",
     borderRadius: "25px",
@@ -197,7 +201,6 @@ const classes = {
     MozUserSelect: "none",
     WebkitUserSelect: "none",
     MsUserSelect: "none",
-    margin: "20px",
   },
   todoItem: {
     display: "flex",
