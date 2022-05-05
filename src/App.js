@@ -5,6 +5,7 @@ import { ReactComponent as ListIcon } from "../src/assets/icons/list.svg";
 import { ReactComponent as TrashIcon } from "../src/assets/icons/trash.svg";
 import { ReactComponent as RadioIcon } from "../src/assets/icons/emptyRadio.svg";
 import { ReactComponent as CheckedRadioIcon } from "../src/assets/icons/checkedRadio.svg";
+import { ReactComponent as TodoListSvg } from "../src/assets/images/Todo-list.svg";
 import LoadingIcon from "./LoadingIcon";
 
 const GET_TODOS = gql`
@@ -98,86 +99,105 @@ function App() {
   return (
     <div style={{ minWidth: "300px", padding: "20px" }}>
       <div style={classes.mainWrapper}>
-        <ListIcon style={{ width: "80px", height: "80px" }} />
-        <h2 style={{ color: "#47456D", marginBottom: "8px" }}>Add new Task</h2>
-        <p style={{ color: "#AFAFAF", textAlign: "center", margin: 0 }}>
-          Be productive today, and lets make some wonderful world with it.
-        </p>
-        {/* Add todo */}
-        <div style={classes.inputWrapper}>
-          <input
-            type="text"
-            placeholder="Add new todo..."
-            style={classes.textInput}
-            ref={inputRef}
-          />
-          <AddIcon
-            onClick={handleAddTodo}
-            style={{ width: "24px", height: "24px", cursor: "pointer" }}
-          />
-        </div>
-        {/* todo list */}
+        <TodoListSvg className="vector" />
         <div
           style={{
-            width: "318px",
-            boxSizing: "border-box",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            width: "50%",
           }}
         >
-          {loading ? (
-            <LoadingIcon />
-          ) : error ? (
-            <>Error fetching data</>
-          ) : (
-            data.Todos.map((todo, index) => {
-              return (
-                <div
-                  key={todo.id}
-                  style={{
-                    ...classes.todoItem,
-                    borderLeft:
-                      index % 2 === 0
-                        ? "8px solid #8D8AB9"
-                        : "8px solid #B2E0DA",
-                  }}
-                >
+          <ListIcon style={{ width: "80px", height: "80px" }} />
+          <h2 style={{ color: "#47456D", marginBottom: "8px" }}>
+            Add new Task
+          </h2>
+          <p
+            style={{
+              color: "#AFAFAF",
+              textAlign: "center",
+              margin: 0,
+              maxWidth: "300px",
+            }}
+          >
+            Be productive today, and lets make some wonderful world with it.
+          </p>
+          {/* Add todo */}
+          <div style={classes.inputWrapper}>
+            <input
+              type="text"
+              placeholder="Add new todo..."
+              style={classes.textInput}
+              ref={inputRef}
+            />
+            <AddIcon
+              onClick={handleAddTodo}
+              style={{ width: "24px", height: "24px", cursor: "pointer" }}
+            />
+          </div>
+          {/* todo list */}
+          <div
+            style={{
+              width: "318px",
+              boxSizing: "border-box",
+            }}
+          >
+            {loading ? (
+              <LoadingIcon />
+            ) : error ? (
+              <>Error fetching data</>
+            ) : (
+              data.Todos.map((todo, index) => {
+                return (
                   <div
-                    style={classes.checkboxWrapper}
-                    onClick={() => {
-                      handleToggleTodo(todo);
+                    key={todo.id}
+                    style={{
+                      ...classes.todoItem,
+                      borderLeft:
+                        index % 2 === 0
+                          ? "8px solid #8D8AB9"
+                          : "8px solid #B2E0DA",
                     }}
                   >
-                    <RadioIcon
-                      style={{
-                        ...classes.checkbox,
-                        display: todo.done && "none",
-                      }}
-                    />
-                    <CheckedRadioIcon
-                      style={{
-                        ...classes.checkbox,
-                        display: !todo.done && "none",
-                      }}
-                    />
-                    <p
-                      style={{
-                        margin: 0,
-                        color: "#47456D",
-                        textDecoration: todo.done && "line-through",
+                    <div
+                      style={classes.checkboxWrapper}
+                      onClick={() => {
+                        handleToggleTodo(todo);
                       }}
                     >
-                      {todo.text}
-                    </p>
+                      <RadioIcon
+                        style={{
+                          ...classes.checkbox,
+                          display: todo.done && "none",
+                        }}
+                      />
+                      <CheckedRadioIcon
+                        style={{
+                          ...classes.checkbox,
+                          display: !todo.done && "none",
+                        }}
+                      />
+                      <p
+                        style={{
+                          margin: 0,
+                          color: "#47456D",
+                          textDecoration: todo.done && "line-through",
+                        }}
+                      >
+                        {todo.text}
+                      </p>
+                    </div>
+                    <TrashIcon
+                      style={classes.deleteBtn}
+                      onClick={() => {
+                        handleDeleteTodo(todo);
+                      }}
+                    />
                   </div>
-                  <TrashIcon
-                    style={classes.deleteBtn}
-                    onClick={() => {
-                      handleDeleteTodo(todo);
-                    }}
-                  />
-                </div>
-              );
-            })
-          )}
+                );
+              })
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -188,9 +208,10 @@ export default App;
 const classes = {
   mainWrapper: {
     display: "flex",
-    flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
     width: "100%",
+    height: "100%",
     minHeight: "800px",
     backgroundColor: "#FCEEEC",
     borderRadius: "25px",
