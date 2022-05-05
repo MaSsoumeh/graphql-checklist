@@ -145,7 +145,7 @@ function App() {
             {loading ? (
               <LoadingIcon />
             ) : error ? (
-              <>Error fetching data</>
+              <>Error fetching data!</>
             ) : (
               data.Todos.map((todo, index) => {
                 return (
@@ -179,6 +179,9 @@ function App() {
                       />
                       <p
                         style={{
+                          display: "block",
+                          maxWidth: "100%",
+                          overflowWrap: "break-word",
                           margin: 0,
                           color: "#47456D",
                           textDecoration: todo.done && "line-through",
