@@ -17,6 +17,10 @@ This is a simple todo list with GraphQL.
 
 ![Mobile Design](./src/assets/images/TodoLine.png)
 
+#### Desktop Design
+
+![Desktop Design](./src/assets/images/TodoLineDesktop.png)
+
 ### Links
 
 - Live Site URL: [Live URL](https://todoline.netlify.app)
