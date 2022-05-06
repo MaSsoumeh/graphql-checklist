@@ -116,6 +116,7 @@ function App() {
               color: "#AFAFAF",
               textAlign: "center",
               margin: 0,
+              width: "318px",
             }}
           >
             Be productive today, and lets make some wonderful world with it.
@@ -223,6 +224,7 @@ const classes = {
     MozUserSelect: "none",
     WebkitUserSelect: "none",
     MsUserSelect: "none",
+    gap: "128px",
   },
   todoItem: {
     display: "flex",
