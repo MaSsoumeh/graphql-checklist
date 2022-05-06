@@ -105,7 +105,6 @@ function App() {
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
-            width: "50%",
           }}
         >
           <ListIcon style={{ width: "80px", height: "80px" }} />
@@ -117,7 +116,6 @@ function App() {
               color: "#AFAFAF",
               textAlign: "center",
               margin: 0,
-              maxWidth: "300px",
             }}
           >
             Be productive today, and lets make some wonderful world with it.
